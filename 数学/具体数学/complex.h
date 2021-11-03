@@ -40,7 +40,7 @@ struct complex{
 	inline complex operator /(const complex &p)const{
 		return (*this)*complex(p.real,-p.imag)
 			/(p.real*p.real+p.imag*p.imag);}
-	inline complex operator /=(const complex &p){
+	inline void operator /=(const complex &p){
 		(*this)*=complex(p.real,-p.imag);
 		(*this)/=(p.real*p.real+p.imag*p.imag);
 	}
