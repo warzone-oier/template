@@ -9,30 +9,30 @@ struct matrix{
 		memset(num,p.num,sizeof(num));}
 	inline db* operator[](word id){return num[id];}
 	inline matrix& operator+=(const matrix& p){
-		for(register word i=0;i<msize;++i)
-			for(register word j=0;j<nsize;++j)
+		for(word i=0;i<msize;++i)
+			for(word j=0;j<nsize;++j)
 				num[i][j]+=p[i][j];
 		return *this;
 	}
 	inline matrix& operator-=(const matrix&p){
-		for(register word i=0;i<msize;++i)
-			for(register word j=0;j<nsize;++j)
+		for(word i=0;i<msize;++i)
+			for(word j=0;j<nsize;++j)
 				num[i][j]-=p[i][j];
 		return *this;
 	}
 	inline matrix& operator*=(db k){
-		for(register word i=0;i<msize;++i)
-			for(register word j=0;j<nsize;++j)
+		for(word i=0;i<msize;++i)
+			for(word j=0;j<nsize;++j)
 				num[i][j]*=k;
 	}
 	template<word lsize>
-	inline matrix<msize,lsize> operator*
+	inline matrix<msize,lsize> operator()
 		(const matrix<nsize,lsize>&p){
 			matrix<msize,lsize> out;
-			register db ans;
-			for(register word i=0;i<msize;++i)
-				for(register word j=0;j<lsize;++j){
-					for(register word k=ans=0;k<nsize;++k)
+			db ans;
+			for(word i=0;i<msize;++i)
+				for(word j=0;j<lsize;++j){
+					for(word k=ans=0;k<nsize;++k)
 						ans+=num[i][k]*p.num[k][j];
 					out[i][j]=ans;
 				}
@@ -47,9 +47,9 @@ struct vector: public matrix<size,1>{
 			sizeof(matrix<size,1>::num));}
 	inline db& operator[](word id){
 		return matrix<size,1>::num[id][0];}
-	inline db operator *(const vector& p){
-		register db out=0;
-		for(register word i=0;i<size;++i)
+	inline db operator()(const vector& p){
+		db out=0;
+		for(word i=0;i<size;++i)
 			out+=(*this)[i]*p[i];
 		return out;
 	}
