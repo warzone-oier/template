@@ -11,8 +11,11 @@ struct SAM{
 		size=last=0;
 		fa[0]=0xffffffff;
 	}
-	inline void operator >>(byte c){
-		last=next[last][c];}
+	inline void operator >>(const type &c){
+		auto ite=next[last].find(c);
+		if(ite==next[last].end()) last=0;
+		else last=ite->second;
+	}
 	#define copy()	\
 		floor[++size]=floor[last]+1;					\
 		next[size]=next[*num];							\

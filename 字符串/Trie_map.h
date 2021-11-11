@@ -11,8 +11,11 @@ struct Trie{
 		memset(next,0,sizeof(next));
 		floor[0]=size=last=0;
 	}
-	inline void operator >>(byte c){
-		last=next[last][c];}
+	inline void operator >>(const type &c){
+		auto ite=next[last].find(c);
+		if(ite==next[last].end()) last=0;
+		else last=ite->second;
+	}
 	inline void operator +=(byte c){
 		if(next[last][c]==0){
 			next[last][c]=++size;
