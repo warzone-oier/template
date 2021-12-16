@@ -15,7 +15,7 @@ constexpr ull pow_(word a,word b,const word md=mod){
 	}
 	return ans;
 }
-word realid[1<<mx],ni[nimod];
+word realid[1<<(mx+1)],ni[nimod];
 namespace FFT{
 	struct FFTDEF{
 		inline FFTDEF(){
