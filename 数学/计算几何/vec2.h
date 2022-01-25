@@ -61,7 +61,7 @@ struct matrix:vector<vector<type,ltype,dtype>,ltype,dtype>{
 		base::x.x,base::x.y,
 		base::y.x,base::y.y);}
 	inline matrix _1()const{return matrix(base(//逆矩阵
-		vec(base::y.y,base::y.x),
-		vec(base::x.y,base::x.x))/det());}
+		vec(base::y.y,-base::y.x),
+		vec(-base::x.y,base::x.x))/det());}
 };
 #endif
