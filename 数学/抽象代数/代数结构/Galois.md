@@ -39,19 +39,22 @@ $$
 	将 $f$ 减去 $a\prod_k\sigma_k^{l_k-l_{k-1}}$，其最靠前的单项式等价类的序减小。  
 	机械重复该过程，即可把 $f$ 唯一分解为初等对称多项式之积的线性组合。
 
-## 预解式与辅助方程
+## 预解式与预解方程
+
+拉格朗日指出，求解一元 $n$ 次方程的过程，本质上是在破坏韦达定理中根的对称性。
 
 对于一元 $n$ 次方程 $x^n+p_1x^{n-1}+p_2x^{n-2}+\cdots+p_n=0$ 的 $n$ 个根 $x_1,x_2,\cdots,x_n$，  
-定义**预解式**为 $n$ 元置换到 $x_1,x_2,\cdots,x_n$ 线性组合的函数
+定义**预解式**为 $n$ 元置换到 $x_1,x_2,\cdots,x_n$ 的**非对称**多项式函数
 
-$$u(\tau)=c_1x_{\tau_1}+c_2x_{\tau_2}+\cdots+c_nx_{\tau_n}$$
+$$u(\tau)=f(x_{\tau_1},x_{\tau_2},\cdots,x_{\tau_n})$$
+
 
 预解式有如下性质：
 
 对于所有的 $n$ 元置换 $\tau_1,\tau_2,\cdots,\tau_{n!}$，  
 关于 $u(\tau_1),u(\tau_2),\cdots,u(\tau_{n!})$ 的对称多项式同时也是关于 $x_1,x_2,\cdots,x_n$ 的对称多项式。
 
-在此基础上，定义**辅助方程**为关于 $y$ 的方程
+在此基础上，定义**预解方程**为关于 $y$ 的方程
 
 $$(y-u(\tau_1))(y-u(\tau_2))\cdots(y-u(\tau_{n!}))=0$$
 
@@ -59,26 +62,12 @@ $$(y-u(\tau_1))(y-u(\tau_2))\cdots(y-u(\tau_{n!}))=0$$
 也就同时是关于 $x_1,x_2,\cdots,x_n$ 的对称多项式，可以用 关于 $x_1,x_2,\cdots,x_n$ 的  
 初等对称多项式，即原方程的系数 $p_1,p_2,\cdots,p_n$ 机械地唯一表示出来。
 
-求出辅助方程的解，联立线性方程组
+若预解式在根的置换下发生改变，求出预解方程的解就得知了  
+原先的 $n$ 个根的一个**非对称**的关系，从而破坏根的对称性，化为低次方程。
 
-$$
-\begin{bmatrix}
-	c_{\tau_{1,1}}& c_{\tau_{1,2}}&\cdots& c_{\tau_{1,n}}\\
-	c_{\tau_{2,1}}& c_{\tau_{2,2}}&\cdots& c_{\tau_{2,n}}\\
-	\vdots&\vdots&\vdots&\vdots\\
-	c_{\tau_{n!,1}}& c_{\tau_{n!,2}}&\cdots& c_{\tau_{n!,n}}\\
-	1&1&\cdots&1
-\end{bmatrix}\begin{bmatrix}
-	x_1\\x_2\\ \vdots\\x_n
-\end{bmatrix}=\begin{bmatrix}y_1\\y_2\\ \vdots\\y_{n!}\\ p_1\end{bmatrix}
-$$
-
-即可求出原方程的解。
-
-辅助方程的次数看似很大，但根据线性代数知识可知，  
-$u(\tau)$ 张成的线性空间维度最多为 $n$，  
-为了实现降次，同时因为只有一个额外的方程组 $(x_1+x_2+\cdots+x_n=p_1)$ 与解联立，  
-我们需要辅助方程**实际上**刚好是个 $n-1$ 次方程，这借助于预解式的合理选择。
+预解方程看似次数比原方程大得多，但是：
+- $u(\tau)$ 可能仍有一定的对称性，导致辅助方程有许多重根。
+- 选取单位根为 $u(\tau)$ 能开方降次。
 
 ## 二次、三次、四次方程解法
 
@@ -94,12 +83,12 @@ $$\begin{cases}
 	x_1x_2=b
 \end{cases}$$
 
-设其预解式 $u(\tau)=x_{\tau_1}-x_{\tau_2}$，其有两个不同的取值
+考虑预解式 $u(\tau)=x_{\tau_1}-x_{\tau_2}$，其有两个不同的取值
 
 $$u\begin{pmatrix}1 &2\\1 &2\end{pmatrix}=x_1-x_2=p,\\
 u\begin{pmatrix}1 &2\\2 &1\end{pmatrix}=x_2-x_1=-p$$
 
-定义辅助方程
+于是对于预解方程
 
 $$(y+p)(y-p)=0$$
 
@@ -107,17 +96,15 @@ $$(y+p)(y-p)=0$$
 
 $$y^2-p^2=0$$
 
-也就是说辅助方程实际上是个一次方程。我们可以将 $p^2$ 唯一分解为 $x_1,x_2$ 的初等对称多项式
+也就是说预解方程实际上是个一次方程。我们可以将 $p^2$ 唯一分解为 $x_1,x_2$ 的初等对称多项式
 
 $$p^2=(x_1-x_2)^2=(x_1+x_2)^2-4x_1x_2$$
 
 代入 $p^2=a^2-4b$ 即可解出
 
-$$y=a^2-4b$$
+$$y=\pm\sqrt{a^2-4b}$$
 
-联立线性方程组
-
-$$\begin{bmatrix}1&-1\\1&1\end{bmatrix}{x_1\brack x_2}={\sqrt{a^2-4b}\brack a}$$
+由此我们知道了非对称关系 $x_1-x_2=\sqrt{a^2-4b}$，与对称关系 $x_1+x_2=a$ 联立，
 
 即可解出 $x_1=\dfrac{-a+\sqrt{a^2-4b}}{2},x_2=\dfrac{-a-\sqrt{a^2-4b}}{2}$
 
@@ -134,7 +121,7 @@ $$\begin{cases}
 	x_1x_2+x_1x_3+x_2x_3=b\\
 	x_1x_2x_3=c
 \end{cases}$$
-设其预解式 $u(\tau)=x_{\tau_1}+\omega x_{\tau_2}+\omega^2x_{\tau_3},\omega$ 为三次单位根，其有六个不同的取值
+考虑预解式 $u(\tau)=x_{\tau_1}+\omega x_{\tau_2}+\omega^2x_{\tau_3},\omega$ 为三次单位根，其有六个不同的取值
 
 $$
 u\begin{pmatrix}1&2&3\\1&2&3\end{pmatrix}=x_1+\omega x_2+\omega^2 x_3=p\\
@@ -144,7 +131,7 @@ u\begin{pmatrix}1&2&3\\1&3&2\end{pmatrix}=x_1+\omega x_3+\omega^2 x_2=q\\
 u\begin{pmatrix}1&2&3\\2&1&3\end{pmatrix}=x_2+\omega x_1+\omega^2 x_3=\omega q\\
 u\begin{pmatrix}1&2&3\\3&2&1\end{pmatrix}=x_3+\omega x_2+\omega^2 x_1=\omega^2 q
 $$
-定义辅助方程
+于是对于预解方程
 
 $$(y-p)(y-\omega p)(y-\omega^2p)(y-q)(y-\omega q)(y-\omega^2 q)=0$$
 
@@ -152,7 +139,7 @@ $$(y-p)(y-\omega p)(y-\omega^2p)(y-q)(y-\omega q)(y-\omega^2 q)=0$$
 
 $$(y^3-p^3)(y^3-q^3)=0$$
 
-通过韦达定理，将辅助方程的系数唯一分解为 $x_1,x_2,x_3$ 的初等对称多项式
+通过韦达定理，将预解方程的系数唯一分解为 $x_1,x_2,x_3$ 的初等对称多项式
 
 $$
 p^3+q^3=(x_1+\omega x_2+\omega^2 x_3)^3+(x_1+\omega^2x_2+\omega x^3)^3\\
@@ -166,19 +153,13 @@ $$
 
 $$y=\dfrac{(p^3+q^3)\pm\sqrt{(p^3+q^3)^2-4p^3q^3}}{2}$$
 
-联立线性方程组
+由此得知了 $x_1,x_2,x_3$ 的两个非对称关系
+$$\begin{cases}
+	x_1+\omega x_2+\omega^2 x_3=\dfrac{(p^3+q^3)+\sqrt{(p^3+q^3)^2-4p^3q^3}}{2}\\
+	x_1+\omega^2 x_2+\omega x_3=\dfrac{(p^3+q^3)-\sqrt{(p^3+q^3)^2-4p^3q^3}}{2}
+\end{cases}$$
 
-$$
-\begin{bmatrix}
-	1&\omega&\omega^2\\
-	1&\omega^2&\omega\\
-	1&1&1
-\end{bmatrix}
-
-\begin{bmatrix}x_1\\x_2\\ x_3\end{bmatrix}
-=\begin{bmatrix}y_1\\y_2\\ a\end{bmatrix}
-$$
-即可解得 $x_1,x_2,x_3$ 。
+与对称关系 $x_1+x_2+x_3=a$ 联立，即可解出 $x_1,x_2,x_3$ 。
 
 ### 四次方程解法
 
@@ -197,18 +178,31 @@ $$
 \end{cases}
 $$
 
-设其预解式 $u(\tau)=x_{\tau_1}+ix_{\tau_2}-x_{\tau_3}-ix_{\tau_4}$，
+首先考虑预解式 $u(\tau)=x_{\tau_1}+ix_{\tau_2}-x_{\tau_3}-ix_{\tau_4}$，其在置换下有 $4! =24$ 种不同的取值。
 
-定义预解方程
+发现最多化为六次，行不通，考虑保留一定的对称性，对于如下预解式
 
-$$\prod_{\tau}(y-u(\tau))=0$$
+$$u(\tau)=x_{\tau_1}x_{\tau_2}+x_{\tau_3}x_{\tau_4}$$
 
-它实际上是个一元三次方程，首先根据复数 $n$ 次方差公式，可化简为
+其在根的置换下只有三种不同的取值：  
+$p=x_1x_2+x_3x_4$，$q=x_1x_3+x_2x_4,r=x_1x_4+x_2x_3$，  
+于是预解方程为
+$$(y-p)^4(y-q)^4(y-r)^4=0$$
+其本质上是个三次方程
+$$(y-p)(y-q)(y-r)=0$$
+
+通过韦达定理，可将其系数分解为 $x_1,x_2,x_3,x_4$ 的初等对称多项式
 
 $$
-(y^4-(x_1-x_2+ix_3-ix_4)^4)(y^4-(x_1-x_2-ix_3+ix_4)^4)\qquad\\
-(y^4-(x_1+ix_2-x_3-ix_4)^4)(y^4-(x_1-ix_2-x_3+ix_4)^4)\qquad\\
-(y^4-(x_1+ix_2-ix_3-x_4)^4)(y^4-(x_1-ix_2+ix_3-x_4)^4)=0$$
+\begin{cases}
+p+q+r=b\\
+pq+pr+qr=ac-4d\\
+pqr=a^2d+c^2-4bd
+\end{cases}
+$$
 
-接下来合并相邻两项，可得
+代入解出 $y$，从而得知 $p,q,r$ 三个非对称关系。
 
+与 对称关系 $x_1x_2x_3x_4=d$ 联立，求解一元二次方程，  
+对称性被进一步破坏为 $x_1x_2,x_1x_3,x_1x_4,x_2x_3,x_2x_4,x_3x_4$。  
+再与 $x_1x_2x_3+x_1x_2x_4+x_1x_3x_4+x_2x_3x_4=c$，从而解得 $x_1,x_2,x_3,x_4$。
