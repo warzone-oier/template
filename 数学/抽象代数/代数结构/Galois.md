@@ -67,7 +67,7 @@ $$(y-u(\tau_1))(y-u(\tau_2))\cdots(y-u(\tau_{n!}))=0$$
 
 预解方程看似次数比原方程大得多，但是：
 - $u(\tau)$ 可能仍有一定的对称性，导致辅助方程有许多重根。
-- 选取单位根为 $u(\tau)$ 能开方降次。
+- 若使 $u^k(\tau)$ 具有对称性，可以求出 $u^k(\tau)$ 后开方得到 $u(\tau)$。
 
 ## 二次、三次、四次方程解法
 
@@ -88,21 +88,21 @@ $$\begin{cases}
 $$u\begin{pmatrix}1 &2\\1 &2\end{pmatrix}=x_1-x_2=p,\\
 u\begin{pmatrix}1 &2\\2 &1\end{pmatrix}=x_2-x_1=-p$$
 
+显然，$u^2(\tau)$ 具有对称性
+
+$$u^2(\tau)=p^2$$
+
 于是对于预解方程
 
-$$(y+p)(y-p)=0$$
+$$(y+p)(y-p)=y^2-p^2=0$$
 
-显然
-
-$$y^2-p^2=0$$
-
-也就是说预解方程实际上是个一次方程。我们可以将 $p^2$ 唯一分解为 $x_1,x_2$ 的初等对称多项式
+我们可以将 $p^2$ 唯一分解为 $x_1,x_2$ 的初等对称多项式
 
 $$p^2=(x_1-x_2)^2=(x_1+x_2)^2-4x_1x_2$$
 
 代入 $p^2=a^2-4b$ 即可解出
 
-$$y=\pm\sqrt{a^2-4b}$$
+$$y^2=a^2-4b$$
 
 由此我们知道了非对称关系 $x_1-x_2=\sqrt{a^2-4b}$，与对称关系 $x_1+x_2=a$ 联立，
 
@@ -131,11 +131,12 @@ u\begin{pmatrix}1&2&3\\1&3&2\end{pmatrix}=x_1+\omega x_3+\omega^2 x_2=q\\
 u\begin{pmatrix}1&2&3\\2&1&3\end{pmatrix}=x_2+\omega x_1+\omega^2 x_3=\omega q\\
 u\begin{pmatrix}1&2&3\\3&2&1\end{pmatrix}=x_3+\omega x_2+\omega^2 x_1=\omega^2 q
 $$
+
+易发现，$u^3(\tau)$ 具有对称性
+
+$$u^3\begin{pmatrix}1&2&3\\1&2&3\end{pmatrix}=u^3\begin{pmatrix}1&2&3\\3&1&2\end{pmatrix}=u^3\begin{pmatrix}1&2&3\\2&3&1\end{pmatrix}=p^3$$
+$$u^3\begin{pmatrix}1&2&3\\1&3&2\end{pmatrix}=u^3\begin{pmatrix}1&2&3\\2&1&3\end{pmatrix}=u^3\begin{pmatrix}1&2&3\\3&2&1\end{pmatrix}=q^3$$
 于是对于预解方程
-
-$$(y-p)(y-\omega p)(y-\omega^2p)(y-q)(y-\omega q)(y-\omega^2 q)=0$$
-
-根据复数的 $n$ 次方差公式，它实际上是一个二次方程
 
 $$(y^3-p^3)(y^3-q^3)=0$$
 
@@ -151,12 +152,12 @@ $$
 
 代入 $p^3+q^3=2a^3-9ab+27c,p^3q^3=(a^2-3b)^3$，即可解出
 
-$$y=\dfrac{(p^3+q^3)\pm\sqrt{(p^3+q^3)^2-4p^3q^3}}{2}$$
+$$y^3=\dfrac{(p^3+q^3)\pm\sqrt{(p^3+q^3)^2-4p^3q^3}}{2}$$
 
 由此得知了 $x_1,x_2,x_3$ 的两个非对称关系
 $$\begin{cases}
-	x_1+\omega x_2+\omega^2 x_3=\dfrac{(p^3+q^3)+\sqrt{(p^3+q^3)^2-4p^3q^3}}{2}\\
-	x_1+\omega^2 x_2+\omega x_3=\dfrac{(p^3+q^3)-\sqrt{(p^3+q^3)^2-4p^3q^3}}{2}
+	x_1+\omega x_2+\omega^2 x_3=\sqrt[3]{\dfrac{(p^3+q^3)+\sqrt{(p^3+q^3)^2-4p^3q^3}}{2}}\\
+	x_1+\omega^2 x_2+\omega x_3=\sqrt[3]{\dfrac{(p^3+q^3)-\sqrt{(p^3+q^3)^2-4p^3q^3}}{2}}
 \end{cases}$$
 
 与对称关系 $x_1+x_2+x_3=a$ 联立，即可解出 $x_1,x_2,x_3$ 。
@@ -180,7 +181,9 @@ $$
 
 首先考虑预解式 $u(\tau)=x_{\tau_1}+ix_{\tau_2}-x_{\tau_3}-ix_{\tau_4}$，其在置换下有 $4! =24$ 种不同的取值。
 
-发现最多化为六次，行不通，考虑保留一定的对称性，对于如下预解式
+发现尽管 $u^4(\tau)$ 具有对称性，但置换下不同的取值有六个，  
+
+预解方程为六次，行不通。考虑保留一定的对称性，对于如下预解式
 
 $$u(\tau)=x_{\tau_1}x_{\tau_2}+x_{\tau_3}x_{\tau_4}$$
 
