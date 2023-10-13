@@ -7,7 +7,7 @@
 		for(word head=0;head<(size);head+=floor<<1)	\
 			for(word i=0;i<floor;++i)
 const word mod=992844353,nimod=29;
-constexpr ull pow_(word a,word b,const word md=mod){
+inline ull pow_(word a,word b,const word md=mod){
 	word ans=1;
 	for(;b;b>>=1){
 		if(b&1) ans=1ull*ans*a%md;
